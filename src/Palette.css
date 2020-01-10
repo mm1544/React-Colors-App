@@ -1,5 +1,7 @@
 .Palette {
     height:100vh; /*view height*/
+    display: flex;
+    flex-direction: column;
 }
 
 .Palette-colors {
@@ -7,4 +9,18 @@
      for navbar and footer */
     height: 90%; /*...of its parent,
      i.e. "Palette", which is 100vh...*/
+}
+
+.Palette-footer {
+    background-color: white;
+    height: 5vh;
+    display: flex; /*using flexbox*/
+    justify-content: flex-end; /*will move everything to right side*/
+    align-items: center;
+    font-weight: bold;
+}
+
+.emoji {
+    font-size: 1.5rem;
+    margin: 0 1rem;
 }
