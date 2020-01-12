@@ -61,7 +61,7 @@ function MiniPalette(props) {
     ));
     return (
         // there is created unique class-name inside "classes.main"
-        <div className={classes.root}>
+        <div className={classes.root} onClick={props.handleClick}>
             <div className={classes.colors}>
                 {miniColorBoxes}
             </div>
