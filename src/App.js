@@ -19,7 +19,7 @@ class App extends Component {
   render() {
     return (
       <Switch>
-        {/* necessary to pass a routeProps */}
+        {/* routeProps has to be passed */}
         <Route exact path='/' render={routeProps => (<PaletteList palettes={seedColors} {...routeProps} />
           )} 
         />
@@ -27,6 +27,11 @@ class App extends Component {
         routeProps.match.params.id --> takes id from url
         */}
         <Route exact path='/palette/:id' render={routeProps => <Palette palette={generatePalette(this.findPalette(routeProps.match.params.id))} />} />
+        <Route
+          exact
+          path="/palette/:paletteId/:colorId"
+          render={()=> <h1>Single color page</h1>}
+        />
       </Switch>
     );
   }
