@@ -42,8 +42,7 @@ function MiniPalette(props) {
     return (
         // there is created unique class-name inside "classes.main"
         <div className={classes.root}>
-            <div className={classes.colors}>
-            </div>
+            <div className={classes.colors}></div>
             <h5 className={classes.title}>{paletteName} <span className={classes.emoji}>{emoji}</span></h5>
         </div>
     );
@@ -51,4 +50,4 @@ function MiniPalette(props) {
 
 export default withStyles(styles)(MiniPalette);
 
-// "withStyles(styles)(MiniPalette)" --> higher order component. It "takes" MiniPalette and returns a new version of that component, that has some styles passed down to the props. Inside of a PROPS we are going to have a "classes" property. Inside of "classes" -  "root" and etc.
+// "withStyles(styles)(MiniPalette)" --> higher order component. It "takes" MiniPalette and returns a new version of that component, that has some styles passed down to the PROPS. Inside of a PROPS we are going to have a "classes" property. Inside of "classes" -  "root" and etc.
