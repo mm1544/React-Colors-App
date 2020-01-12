@@ -6,22 +6,22 @@ import {withStyles} from '@material-ui/styles';
 const styles = {
     root: {
         backgroundColor: "blue",
-        height: "100%",
+        height: "100vh", // !!! 100% would not cover all screen, because "root" is wraped in another component
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "center"
     },
     container: {
-        backgroundColor: "red",
+        // backgroundColor: "red",
         width: "50%", //% of its parent
         display: "flex",
         alignItems: "flex-start",
         flexDirection: "column",
         flexWrap: "wrap",
-        border: "1px solid white"
+        // border: "1px solid white"
     },
     nav: {
-        backgroundColor: "green",
+        // backgroundColor: "green",
         display: "flex",
         width: "100%",
         justifyContent: "space-between",
