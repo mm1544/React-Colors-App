@@ -18,7 +18,7 @@ export default class ColorBox extends Component {
     }
 
     render() {
-        const {name, background} = this.props;
+        const {name, background, moreUrl} = this.props;
         return (
             // 'wrapping' all ColorBox to CopyToClipboard
             // After clicking on ColorBox this.props.background
@@ -42,7 +42,7 @@ export default class ColorBox extends Component {
                     </div>
                     {/* stopPropagation() --> Prevent further events from 
                     beying propagated (copying to clipboard and animation) */}
-                    <Link to='/' onClick={e => e.stopPropagation()}>
+                    <Link to={moreUrl} onClick={e => e.stopPropagation()}>
                         <span className="see-more">More</span>
                     </Link>
                 </div>
