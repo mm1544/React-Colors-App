@@ -1,7 +1,7 @@
 .ColorBox {
     width: 20%; /* 5 boxes will go across the screen*/
     height: 25%; /*??? MEANING: It is 25% of the 
-    className="Palette", but Palette height is not set*/
+    className="Palette", but Palette height is not set (??)*/
     margin: 0 auto;
     display: inline-block;
     position: relative;
@@ -9,7 +9,18 @@
     margin-bottom: -3.5px; /*removes spacing between rows*/
 }
 
-.copy-button {
+/* inside of a SingleColorPalette styling  ColorBox*/
+.SingleColorPalette .ColorBox {
+    height: 50%;
+}
+
+/* selecting an element that has both classes ColorBox and go-back */
+.ColorBox.go-back {
+    background-color: black;
+}
+
+.copy-button,
+.back-button {
     width: 100px;
     height: 30px;
     position: absolute;
@@ -26,7 +37,15 @@
     color: white;
     text-transform: uppercase;
     border: none;
-    opacity: 0; /*it is hidden and appears only when hovered over*/  
+    /* cancels Link's default decorations */
+    text-decoration: none;
+
+}
+
+/* for copy-button only */
+.copy-button {
+    /* it is hidden and appears only when hovered over */
+    opacity: 0;
 }
 
 /* MEANING: when hovering over ColorBox, then STYLE the copy-button */

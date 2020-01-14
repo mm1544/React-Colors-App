@@ -1,6 +1,6 @@
 // functional component
 
-import React, { Component } from 'react'
+import React from 'react'
 
 function PaletteFooter(props) {
     const {paletteName, emoji} = props;
