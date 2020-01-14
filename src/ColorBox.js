@@ -18,14 +18,15 @@ export default class ColorBox extends Component {
     }
 
     render() {
-        const {name, background, moreUrl} = this.props;
+        const {name, background, moreUrl, showLink} = this.props;
         return (
             // 'wrapping' all ColorBox to CopyToClipboard
             // After clicking on ColorBox this.props.background
             // will be copied to clipboard
             <CopyToClipboard text={background} onCopy={this.changeCopyState}>
                 <div className="ColorBox" style={{ background }}>
-                    {/* we need a new Div for Overlay animation is because  when we will use a scale to "grow" a Div, it will also grow content in that div
+                    {/* we need a new Div for Overlay animation is because  when we will use
+                     a scale (in animation) to "grow" a Div, it will also grow content this that div
                     
                     This separate Div will appear, grow and go away*/}
                     <div className={`copy-overlay ${this.state.copied && "show"}`} style={{ background }}/>
@@ -40,11 +41,13 @@ export default class ColorBox extends Component {
                         </div>
                         <button className="copy-button">Copy</button>
                     </div>
-                    {/* stopPropagation() --> Prevent further events from 
-                    beying propagated (copying to clipboard and animation) */}
-                    <Link to={moreUrl} onClick={e => e.stopPropagation()}>
-                        <span className="see-more">More</span>
-                    </Link>
+                    {/* stopPropagation() --> Prevents further events from 
+                    being propagated (copying to clipboard and animation) */}
+                    {showLink && (
+                        <Link to={moreUrl} onClick={e => e.stopPropagation()}>
+                            <span className="see-more">More</span>
+                        </Link>
+                    )}
                 </div>
             </CopyToClipboard>
         );
