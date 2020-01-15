@@ -1,12 +1,11 @@
 .ColorBox {
-    width: 20%; /* 5 boxes will go across the screen*/
-    height: 25%; /*??? MEANING: It is 25% of the 
-    className="Palette", but Palette height is not set (??)*/
+    width: 20%; 
+    height: 25%;
     margin: 0 auto;
     display: inline-block;
     position: relative;
     cursor: pointer;
-    margin-bottom: -3.5px; /*removes spacing between rows*/
+    margin-bottom: -3.5px; 
 }
 
 /* inside of a SingleColorPalette styling  ColorBox*/
@@ -14,8 +13,8 @@
     height: 50%;
 }
 
-/* selecting an element that has both classes ColorBox and go-back */
-.ColorBox.go-back {
+
+.go-back {
     background-color: black;
 }
 
