@@ -7,7 +7,8 @@
 .Palette-colors {
     /* 90% because we reserve space
      for navbar and footer */
-    height: 90%; /*...of its parent,
+    height: 90%; 
+    /*...of its parent,
      i.e. "Palette", which is 100vh...*/
 }
 

@@ -2,10 +2,26 @@ import React, { Component } from 'react'
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
+import {withStyles} from '@material-ui/styles';
 import './Palette.css';
 // withRouter allowes to have access to history object in props
 
-export default class Palette extends Component {
+const styles = {
+    Palette: {
+        height: "100vh", /*view height*/
+        display: "flex",
+        flexDirection: "column"
+    },
+    colors: {
+        /* 90% because we reserve space
+     for navbar and footer */
+        height: "90%" 
+        /*...of its parent,
+     i.e. "Palette", which is 100vh...*/
+    }
+};
+
+class Palette extends Component {
     constructor(props) {
         super(props);
         this.state = {level: 500, format: "hex"};
@@ -23,6 +39,7 @@ export default class Palette extends Component {
 
     render() {
         const {colors, paletteName, emoji, id} = this.props.palette;
+        const {classes} = this.props;
         const {level, format} = this.state;
         const colorBoxes = colors[level].map(color => (
         <ColorBox 
@@ -34,14 +51,14 @@ export default class Palette extends Component {
         />
         ));
         return (
-            <div className="Palette">
+            <div className={classes.Palette}>
                 <Navbar 
                     level={level} 
                     changeLevel={this.changeLevel}
                     handleChange={this.changeFormat}
                     showingColorSlider={true}
                 />
-                <div className="Palette-colors">
+                <div className={classes.colors}>
                     {/* bunch of color boxes */}
                     {colorBoxes}
                 </div>
@@ -50,3 +67,4 @@ export default class Palette extends Component {
         );
     } 
 }
+export default withStyles(styles)(Palette);
