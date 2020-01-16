@@ -3,23 +3,7 @@ import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
 import {withStyles} from '@material-ui/styles';
-import './Palette.css';
-// withRouter allowes to have access to history object in props
-
-const styles = {
-    Palette: {
-        height: "100vh", /*view height*/
-        display: "flex",
-        flexDirection: "column"
-    },
-    colors: {
-        /* 90% because we reserve space
-     for navbar and footer */
-        height: "90%" 
-        /*...of its parent,
-     i.e. "Palette", which is 100vh...*/
-    }
-};
+import styles from './styles/PaletteStyles';
 
 class Palette extends Component {
     constructor(props) {
