@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {Route, Switch} from "react-router-dom";
+import {generatePalette} from './colorHelpers';
 import Palette from './Palette';
 import PaletteList from './PaletteList';
 import SingleColorPalette from './SingleColorPalette'
 import seedColors from './seedColors';
-import {generatePalette} from './colorHelpers';
+import NewPaletteForm from './NewPaletteForm';
+
 
 class App extends Component {
 
@@ -20,6 +22,14 @@ class App extends Component {
   render() {
     return (
       <Switch>
+        <Route 
+          exact
+          // order of Routes does matter; thisone might be confused 
+          // with the on that has path "'/palette/:id'"
+          path='/palette/new' 
+          render={() => <NewPaletteForm />}
+        />
+
         {/* routeProps has to be passed */}
         <Route 
           exact path='/' 
@@ -49,6 +59,7 @@ class App extends Component {
             />
           )}
         />
+
       </Switch>
     );
   }
