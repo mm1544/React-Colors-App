@@ -93,11 +93,12 @@ class NewPaletteForm extends Component {
             open: true,
             currentColor: "teal",
             newName: "",
-            colors: []
+            colors: [{color: "blue", name: "blue"}]
           };
         this.updateCurrentColor = this.updateCurrentColor.bind(this);
         this.addNewColor = this.addNewColor.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -143,6 +144,21 @@ class NewPaletteForm extends Component {
       handleChange(evt) {
         this.setState({newName: evt.target.value});
       }
+      
+      // ???
+      handleSubmit() {
+        // take all the data about the colors from the state and pass it up to the App (App will be storing and keeping track of all of the palettes)
+        let newName="New Test Palette";
+        const newPalette = {
+          paletteName: newName, 
+          // '/ /g, "-"' is a regular expression use to replace empty spaces with a '-'
+          id: newName.toLowerCase().replace(/ /g, "-"),
+          colors: this.state.colors
+        };
+        this.props.savePalette(newPalette);
+        // redirect after saving the palette
+        this.props.history.push("/");
+      }
     
       render() {
         const { classes, theme } = this.props;
@@ -153,6 +169,7 @@ class NewPaletteForm extends Component {
             <CssBaseline />
             <AppBar
               position="fixed"
+              color='default'
               className={classNames(classes.appBar, {
                 [classes.appBarShift]: open,
               })}
@@ -169,6 +186,7 @@ class NewPaletteForm extends Component {
                 <Typography variant="h6" color="inherit" noWrap>
                   Persistent drawer
                 </Typography>
+                <Button variant="contained" color="primary" onClick={this.handleSubmit}>Save Palette</Button>
               </Toolbar>
             </AppBar>
             <Drawer

@@ -9,13 +9,25 @@ import NewPaletteForm from './NewPaletteForm';
 
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {palettes: seedColors};
+    this.savePalette = this.savePalette.bind(this);
+    this.findPalette = this.findPalette.bind(this);
+  }
 
   findPalette(id) {
     // for each one we will have a palette...
     // will return  a palette which id is equal
     // to the id that we are passing
-    return seedColors.find(function(palette){
+    return this.state.palettes.find(function(palette){
       return palette.id === id;
+    });
+  }
+
+  savePalette(newPalette) {
+    this.setState({ 
+      palettes: [...this.state.palettes, newPalette]
     });
   }
 
@@ -27,14 +39,15 @@ class App extends Component {
           // order of Routes does matter; thisone might be confused 
           // with the on that has path "'/palette/:id'"
           path='/palette/new' 
-          render={() => <NewPaletteForm />}
+          // need to pass routeProps to be able in NewPaletteForm to access "history" object
+          render={(routeProps) => <NewPaletteForm savePalette={this.savePalette} {...routeProps}/>}
         />
 
         {/* routeProps has to be passed */}
         <Route 
           exact path='/' 
           render={routeProps => (
-            <PaletteList palettes={seedColors} {...routeProps}
+            <PaletteList palettes={this.state.palettes} {...routeProps}
             />
           )} 
         />
