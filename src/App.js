@@ -40,7 +40,14 @@ class App extends Component {
           // with the on that has path "'/palette/:id'"
           path='/palette/new' 
           // need to pass routeProps to be able in NewPaletteForm to access "history" object
-          render={(routeProps) => <NewPaletteForm savePalette={this.savePalette} {...routeProps}/>}
+          render={(routeProps) => (
+            <NewPaletteForm 
+              savePalette={this.savePalette}
+              // in "NewPaletteForm" need to access all the existing palettes
+              palettes={this.state.palettes}
+              {...routeProps}
+            />
+          )}
         />
 
         {/* routeProps has to be passed */}

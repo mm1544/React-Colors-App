@@ -92,8 +92,9 @@ class NewPaletteForm extends Component {
         this.state = {
             open: true,
             currentColor: "teal",
-            newName: "",
-            colors: [{color: "blue", name: "blue"}]
+            newColorName: "",
+            colors: [{color: "blue", name: "blue"}],
+            newPaletteName: ""
           };
         this.updateCurrentColor = this.updateCurrentColor.bind(this);
         this.addNewColor = this.addNewColor.bind(this);
@@ -112,6 +113,11 @@ class NewPaletteForm extends Component {
         ValidatorForm.addValidationRule('isColorUnique', value => 
             this.state.colors.every(
                 ({color}) => color !== this.state.currentColor
+            )
+        );
+        ValidatorForm.addValidationRule('isPaletteNameUnique', value => 
+            this.props.palettes.every(
+                ({paletteName}) => paletteName.toLowerCase() !== value.toLowerCase()
             )
         );
     }
@@ -134,21 +140,23 @@ class NewPaletteForm extends Component {
       addNewColor() {
           const newColor = {
                 color: this.state.currentColor,
-                name: this.state.newName
+                name: this.state.newColorName
             }
         // [...colors, this.state.currentColor] --> all the elements in "colors" arr + "this.state.currentColor"
-        this.setState({colors: [...this.state.colors, newColor], newName: ""});
+        this.setState({colors: [...this.state.colors, newColor], newColorName: ""});
         // 'newName: "" ' to set input field empty after submitting and changing state
       };
 
       handleChange(evt) {
-        this.setState({newName: evt.target.value});
+        this.setState({
+        [evt.target.name]: evt.target.value
+        });
       }
       
       // ???
       handleSubmit() {
         // take all the data about the colors from the state and pass it up to the App (App will be storing and keeping track of all of the palettes)
-        let newName="New Test Palette";
+        let newName=this.state.newPaletteName;
         const newPalette = {
           paletteName: newName, 
           // '/ /g, "-"' is a regular expression use to replace empty spaces with a '-'
@@ -186,7 +194,31 @@ class NewPaletteForm extends Component {
                 <Typography variant="h6" color="inherit" noWrap>
                   Persistent drawer
                 </Typography>
-                <Button variant="contained" color="primary" onClick={this.handleSubmit}>Save Palette</Button>
+                {/* need to wrap TextValidator inside of ValidatorForm */}
+                <ValidatorForm onSubmit={this.handleSubmit}>
+                  <TextValidator 
+                    // value which validator is binding
+                    label="Palette Name"
+                    value={this.state.newPaletteName}
+                    name="newPaletteName"
+                    onChange={this.handleChange}
+                    validators={[
+                      "required",
+                      "isPaletteNameUnique"
+                    ]}
+                    errorMessages={[
+                      "Enter Palette Name",
+                      "Palette with given name already exsist"
+                    ]}
+                  />
+                  <Button 
+                    variant="contained" 
+                    color="primary" 
+                    // button will submit the form, it will call this.handleSubmit, set on ValidatorForm
+                    type="submit"
+                  >Save Palette
+                  </Button>
+                </ValidatorForm>
               </Toolbar>
             </AppBar>
             <Drawer
@@ -223,11 +255,20 @@ class NewPaletteForm extends Component {
 
                 <ValidatorForm onSubmit={this.addNewColor}>
                     <TextValidator 
-                        value={this.state.newName}
+                        value={this.state.newColorName}
+                        name="newColorName" //need it for handleChange
                         onChange={this.handleChange}
                         // order matters
-                        validators={['required', 'isColorNameUnique', 'isColorUnique']}
-                        errorMessages={['Enter a color name', 'Color name must be unique', 'Color already used']}
+                        validators={[
+                          'required', 
+                          'isColorNameUnique', 
+                          'isColorUnique'
+                        ]}
+                        errorMessages={[
+                          'Enter a color name', 
+                          'Color name must be unique', 
+                          'Color already used'
+                        ]}
                     />
                     <Button 
                         variant="contained" 
