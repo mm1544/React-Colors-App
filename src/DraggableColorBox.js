@@ -1,4 +1,5 @@
 import React from 'react';
+import {SortableElement} from 'react-sortable-hoc';
 import {withStyles} from '@material-ui/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -40,7 +41,7 @@ const styles = {
 };
 
 // This is just a functional component, so to delete it we will pass ID (colorName is unique, so can be used instead) of the object that we are trying to delete (in NewPaletteForm we will have a method that deletes it from colors)
-function DraggableColorBox(props) {
+const DraggableColorBox = SortableElement((props) => {
     const {classes, handleClick, name, color} = props;
     return (
         <div 
@@ -54,7 +55,7 @@ function DraggableColorBox(props) {
                     onClick={handleClick}/>
             </div>
         </div>
-    )
+    );
    
-}
+});
 export default withStyles(styles)(DraggableColorBox);
