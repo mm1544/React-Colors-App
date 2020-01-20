@@ -39,17 +39,19 @@ const styles = {
     }
 };
 
+// This is just a functional component, so to delete it we will pass ID (colorName is unique, so can be used instead) of the object that we are trying to delete (in NewPaletteForm we will have a method that deletes it from colors)
 function DraggableColorBox(props) {
-    const {classes} = props;
+    const {classes, handleClick, name, color} = props;
     return (
         <div 
             className={classes.root} 
-            style={{backgroundColor: props.color}}
+            style={{backgroundColor: color}}
         >
             <div className={classes.boxContent}>
-                <span>{props.name}</span>
+                <span>{name}</span>
                 <DeleteIcon 
-                    className={classes.deleteIcon}/>
+                    className={classes.deleteIcon}
+                    onClick={handleClick}/>
             </div>
         </div>
     )
