@@ -25,12 +25,15 @@ class PaletteList extends Component {
                         {palettes.map(palette => (
                         // passing all content of palette - {...palette}
                         // using an arrow fn to pass-in id to goToPalette()
-                            <MiniPalette {...palette} key={palette.id} handleClick={() => this.goToPalette(palette.id)}/>
-                            ))}
+                            <MiniPalette 
+                                {...palette}
+                                handleClick={() => this.goToPalette(palette.id)}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
-        )
+        );
     }  
 }
 

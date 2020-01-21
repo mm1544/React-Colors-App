@@ -7,21 +7,19 @@ export default {
         justifyContent: "center"
     },
     container: {
-        // backgroundColor: "red",
         width: "50%", //% of its parent
         display: "flex",
         alignItems: "flex-start",
         flexDirection: "column",
-        flexWrap: "wrap",
-        // border: "1px solid white"
+        flexWrap: "wrap"
     },
     nav: {
-        // backgroundColor: "green",
         display: "flex",
         width: "100%",
         justifyContent: "space-between",
         color: "white",
         alignItems: "center",
+        color: "white",
         // styling Link inside of Nav:
         "& a": {
             color: "white"

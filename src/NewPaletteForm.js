@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import {Link} from 'react-router-dom';
+import PalettFormNav from './PaletteFormNav';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -17,6 +18,7 @@ import Button from '@material-ui/core/Button';
 import {ValidatorForm, TextValidator} from "react-material-ui-form-validator";
 import {ChromePicker} from "react-color";
 import {arrayMove} from 'react-sortable-hoc';
+import PaletteFormNav from './PaletteFormNav';
 
 
 const drawerWidth = 400;
@@ -85,15 +87,13 @@ class NewPaletteForm extends Component {
   static defaultProps = {
     maxColors: 20
   }
-
     constructor(props){
         super(props);
         this.state = {
             open: true,
             currentColor: "teal",
             newColorName: "",
-            colors: this.props.palettes[0].colors,
-            newPaletteName: ""
+            colors: this.props.palettes[0].colors
           };
         this.updateCurrentColor = this.updateCurrentColor.bind(this);
         this.addNewColor = this.addNewColor.bind(this);
@@ -115,11 +115,6 @@ class NewPaletteForm extends Component {
         ValidatorForm.addValidationRule('isColorUnique', value => 
             this.state.colors.every(
                 ({color}) => color !== this.state.currentColor
-            )
-        );
-        ValidatorForm.addValidationRule('isPaletteNameUnique', value => 
-            this.props.palettes.every(
-                ({paletteName}) => paletteName.toLowerCase() !== value.toLowerCase()
             )
         );
     }
@@ -155,14 +150,13 @@ class NewPaletteForm extends Component {
         });
       }
       
-      // ???
-      handleSubmit() {
+      // newPaletteName will be passed-in from child component
+      handleSubmit(newPaletteName) {
         // take all the data about the colors from the state and pass it up to the App (App will be storing and keeping track of all of the palettes)
-        let newName=this.state.newPaletteName;
         const newPalette = {
-          paletteName: newName, 
+          paletteName: newPaletteName, 
           // '/ /g, "-"' is a regular expression use to replace empty spaces with a '-'
-          id: newName.toLowerCase().replace(/ /g, "-"),
+          id: newPaletteName.toLowerCase().replace(/ /g, "-"),
           colors: this.state.colors
         };
         this.props.savePalette(newPalette);
@@ -199,59 +193,19 @@ class NewPaletteForm extends Component {
     
       render() {
         // ??? theme
-        const { classes, theme, maxColors } = this.props;
-        const { open, colors } = this.state;
+        const { classes, theme, maxColors, palettes } = this.props;
+        const { open, colors} = this.state;
         const isPaletteFull = colors.length >= maxColors;
     
         return (
           <div className={classes.root}>
-            <CssBaseline />
-            <AppBar
-              position="fixed"
-              color='default'
-              className={classNames(classes.appBar, {
-                [classes.appBarShift]: open,
-              })}
-            >
-              <Toolbar disableGutters={!open}>
-                <IconButton
-                  color="inherit"
-                  aria-label="Open drawer"
-                  onClick={this.handleDrawerOpen}
-                  className={classNames(classes.menuButton, open && classes.hide)}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" color="inherit" noWrap>
-                  Persistent drawer
-                </Typography>
-                {/* need to wrap TextValidator inside of ValidatorForm */}
-                <ValidatorForm onSubmit={this.handleSubmit}>
-                  <TextValidator 
-                    // value which validator is binding
-                    label="Palette Name"
-                    value={this.state.newPaletteName}
-                    name="newPaletteName"
-                    onChange={this.handleChange}
-                    validators={[
-                      "required",
-                      "isPaletteNameUnique"
-                    ]}
-                    errorMessages={[
-                      "Enter Palette Name",
-                      "Palette with given name already exsist"
-                    ]}
-                  />
-                  <Button 
-                    variant="contained" 
-                    color="primary" 
-                    // button will submit the form, it will call this.handleSubmit, set on ValidatorForm
-                    type="submit"
-                  >Save Palette
-                  </Button>
-                </ValidatorForm>
-              </Toolbar>
-            </AppBar>
+          <PaletteFormNav 
+            open={open}
+            classes={classes}
+            palettes={palettes}
+            handleSubmit={this.handleSubmit}
+            handleDrawerOpen={this.handleDrawerOpen}
+            />
             <Drawer
               className={classes.drawer}
               variant="persistent"

@@ -13,15 +13,20 @@ function MiniPalette(props) {
             className={classes.miniColor} 
             style={{backgroundColor: color.color}}
             key={color.name}    
-        ></div>
+        />
     ));
     return (
         // there is created unique class-name inside "classes.main"
-        <div className={classes.root} onClick={props.handleClick}>
+        <div 
+            className={classes.root} 
+            onClick={props.handleClick}
+        >
             <div className={classes.colors}>
                 {miniColorBoxes}
             </div>
-            <h5 className={classes.title}>{paletteName} <span className={classes.emoji}>{emoji}</span></h5>
+            <h5 className={classes.title}>
+                {paletteName} <span className={classes.emoji}>{emoji}</span>
+            </h5>
         </div>
     );
 }
