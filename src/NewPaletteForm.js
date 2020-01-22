@@ -29,6 +29,8 @@ const styles = theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    display: "flex",
+    alignItems: "center"
   },
   drawerHeader: {
     display: 'flex',
@@ -55,6 +57,21 @@ const styles = theme => ({
     }),
     marginLeft: 0,
   },
+  container: {
+    width: "90%",
+    height: "100%",
+    display: "flex",
+    // puts all the content in the column
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  buttons: {
+    width: "100%"
+  },
+  button: {
+    width: "50%"
+  }
 });
 
 
@@ -152,30 +169,34 @@ class NewPaletteForm extends Component {
             palettes={palettes}
             handleSubmit={this.handleSubmit}
             handleDrawerOpen={this.handleDrawerOpen}
-            />
-            <Drawer
-              className={classes.drawer}
-              variant="persistent"
-              anchor="left"
-              open={open}
-              classes={{
-                paper: classes.drawerPaper,
-              }}
-            >
-              <div className={classes.drawerHeader}>
-                <IconButton onClick={this.handleDrawerClose}>
-                  {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                </IconButton>
-              </div>
-              <Divider />
-              <Typography variant="h4">
+          />
+          <Drawer
+            className={classes.drawer}
+            variant="persistent"
+            anchor="left"
+            open={open}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+          >
+            <div className={classes.drawerHeader}>
+              <IconButton onClick={this.handleDrawerClose}>
+                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+              </IconButton>
+            </div>
+            <Divider />
+            <div className={classes.container}>
+              {/* "gutterBottom" will add spacing (material-ui) */}
+              <Typography variant="h4" gutterBottom>
                   Design Your Palette
               </Typography>
-              <div>
+              <div className={classes.buttons}>
                 <Button 
                   variant="contained" 
                   color='secondary'
-                  onClick={this.clearColors}>
+                  onClick={this.clearColors}
+                  className={classes.button}
+                >
                     Clear Palette
                     </Button>
                 <Button 
@@ -183,16 +204,18 @@ class NewPaletteForm extends Component {
                   color='primary'
                   onClick={this.addRandomColor}
                   disabled={isPaletteFull}
+                  className={classes.button}
                 >
                     Random Color
                     </Button>
               </div>
-            <ColorPickerForm 
-              isPaletteFull={isPaletteFull}
-              addNewColor={this.addNewColor}
-              colors={colors}
-            />
-            </Drawer>
+              <ColorPickerForm 
+                isPaletteFull={isPaletteFull}
+                addNewColor={this.addNewColor}
+                colors={colors}
+              />
+            </div>
+          </Drawer>
             <main
               className={classNames(classes.content, {
                 [classes.contentShift]: open,
