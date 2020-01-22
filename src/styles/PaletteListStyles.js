@@ -17,7 +17,6 @@ export default {
         display: "flex",
         width: "100%",
         justifyContent: "space-between",
-        color: "white",
         alignItems: "center",
         color: "white",
         // styling Link inside of Nav:
