@@ -115,15 +115,11 @@ class NewPaletteForm extends Component {
         });
       }
       
-      // newPaletteName will be passed-in from child component
-      handleSubmit(newPaletteName) {
+      handleSubmit(newPalette) {
+        newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");
+        newPalette.colors = this.state.colors;
+
         // take all the data about the colors from the state and pass it up to the App (App will be storing and keeping track of all of the palettes)
-        const newPalette = {
-          paletteName: newPaletteName, 
-          // '/ /g, "-"' is a regular expression use to replace empty spaces with a '-'
-          id: newPaletteName.toLowerCase().replace(/ /g, "-"),
-          colors: this.state.colors
-        };
         this.props.savePalette(newPalette);
         // redirect after saving the palette
         this.props.history.push("/");
