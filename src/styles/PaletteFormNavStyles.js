@@ -36,7 +36,10 @@ const styles = theme => ({
     },
     link: {
         textDecoration: "none"
-    }
+    },
+    hide: {
+        display: 'none',
+      }
     
 });
 
