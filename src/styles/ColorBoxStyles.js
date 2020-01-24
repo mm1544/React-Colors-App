@@ -2,6 +2,7 @@
 // It allows to move logic to styles object
 
 import chroma from "chroma-js";
+import sizes from "./sizes";
 
 export default {
     ColorBox: {
@@ -15,8 +16,21 @@ export default {
         /*removes spacing between rows*/
         marginBottom: "-3.5px",
         "&:hover button": {
-            opacity: "1"
-        } 
+            opacity: 1
+        },
+        [sizes.down("lg")]: {
+            width: "25%",
+            height: props => (props.showingFullPalette ? "20%" : "50%")
+        },
+        [sizes.down("md")]: {
+            width: "50%",
+            // Since width is 50%, there will be 2 colorBoxes across the screen, and therefore, to fit all 20 colorboxes to the screen we need to set height of each colorBox to 10% 
+            height: props => (props.showingFullPalette ? "10%" : "50%")
+        },
+        [sizes.down("xs")]: {
+            width: "100%",
+            height: props => (props.showingFullPalette ? "5%" : "10%")
+        }
     },
     copyText: {
         color: props => 
@@ -53,7 +67,8 @@ export default {
         marginLeft: "-50px",
         marginTop: "-15px",
         textAlign: "center",
-        outline: "none", /*no default outline*/
+        /*no default outline*/
+        outline: "none", 
         background: "rgba(255, 255, 255, 0.3)",
         fontSize: "1rem",
         lineHeight: "30px",
@@ -95,10 +110,10 @@ export default {
     copyMessage: {
         /* initial position is fixed (?) */
         position: "fixed",
-        left:"0",
-        right:"0",
-        top:"0",
-        bottom:"0",
+        left: "0",
+        right: "0",
+        top: "0",
+        bottom: "0",
         /* using flexBox to center objects */
         display: "flex",
         alignItems: "center",

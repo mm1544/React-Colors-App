@@ -1,13 +1,14 @@
-import {DRAWER_WIDTH} from '../constants';
+import { DRAWER_WIDTH } from "../constants";
 const drawerWidth = DRAWER_WIDTH;
 
 const styles = theme => ({
   root: {
-    display: 'flex',
+    display: "flex"
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    height: "100vh"
   },
   drawerPaper: {
     width: drawerWidth,
@@ -15,30 +16,30 @@ const styles = theme => ({
     alignItems: "center"
   },
   drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
     width: "100%",
-    padding: '0 8px',
+    padding: "0 8px",
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end"
   },
   content: {
     flexGrow: 1,
     // 100vh - height of Appbar (!)
     height: "calc(100vh - 64px)",
     padding: 0,
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      duration: theme.transitions.duration.leavingScreen
     }),
-    marginLeft: -drawerWidth,
+    marginLeft: -drawerWidth
   },
   contentShift: {
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
+      duration: theme.transitions.duration.enteringScreen
     }),
-    marginLeft: 0,
+    marginLeft: 0
   },
   container: {
     width: "90%",

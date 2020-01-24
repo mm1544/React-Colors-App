@@ -5,7 +5,6 @@ export default {
         justifyContent: "flex-start",
         height: "6vh"
     },
-    
     logo: {
         marginRight: "15px",
         padding: "0 13px",
@@ -20,7 +19,6 @@ export default {
             color: "black"
         }
     },
-    
     slider: {
         width: "340px",
         margin: "0 10px",
@@ -28,7 +26,7 @@ export default {
         "& rc-slider-rail": {
             height: "8px"
         },
-        "& .rc-slider-handle, .rc-slider-handle:focus, .rc-slider-handle:active, .rc-slider-handle:hover": {
+        "& .rc-slider-handle, .rc-slider-handle:active, .rc-slider-handle:focus, .rc-slider-handle:hover": {
             backgroundColor: "green",
             outline: "none",
             border: "2px solid green",
@@ -47,4 +45,4 @@ export default {
         marginLeft: "auto",
         marginRight: "1rem"
     }
-}
+};

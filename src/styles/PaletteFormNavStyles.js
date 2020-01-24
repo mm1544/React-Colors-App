@@ -1,4 +1,4 @@
-import {DRAWER_WIDTH} from '../constants';
+import { DRAWER_WIDTH } from '../constants';
 const drawerWidth = DRAWER_WIDTH;
 
 const styles = theme => ({
@@ -8,7 +8,7 @@ const styles = theme => ({
     appBar: {
         transition: theme.transitions.create(['margin', 'width'], {
           easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen,
+          duration: theme.transitions.duration.leavingScreen
         }),
         flexDirection: "row",
         justifyContent: "space-between",
@@ -21,12 +21,12 @@ const styles = theme => ({
         marginLeft: drawerWidth,
         transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
+        duration: theme.transitions.duration.enteringScreen
         })
     },
     menuButton: {
         marginLeft: 12,
-        marginRight: 20,
+        marginRight: 20
     },
     navBtns: {
         marginRight: "1rem"

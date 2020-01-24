@@ -1,7 +1,8 @@
 // JSS
 export default {
     Palette: {
-        height: "100vh", /*view height*/
+        /*view height*/
+        height: "100vh", 
         display: "flex",
         flexDirection: "column"
     },
@@ -35,7 +36,8 @@ export default {
             marginLeft: "-50px",
             marginTop: "-15px",
             textAlign: "center",
-            outline: "none", /*no default outline*/
+            /*no default outline*/
+            outline: "none", 
             background: "rgba(255, 255, 255, 0.3)",
             fontSize: "1rem",
             lineHeight: "30px",
@@ -46,20 +48,3 @@ export default {
         }
     }
 };
-
-
-
-// export default {
-//     Palette: {
-//         height: "100vh", /*view height*/
-//         display: "flex",
-//         flexDirection: "column"
-//     },
-//     colors: {
-//         /* 90% because we reserve space
-//      for navbar and footer */
-//         height: "90%" 
-//         /*...of its parent,
-//      i.e. "Palette", which is 100vh...*/
-//     }
-// };
