@@ -1,4 +1,4 @@
-// JSS
+import sizes from './sizes'; // for media queries
 export default {
     Palette: {
         /*view height*/
@@ -45,6 +45,19 @@ export default {
             border: "none",
             /* cancels Link's default decorations */
             textDecoration: "none"
+        },
+        [sizes.down("lg")]: {
+            width: "25%",
+            height: "33.3333%"
+        },
+        [sizes.down("md")]: {
+            width: "50%",
+            height: "20%"
+        },
+        [sizes.down("xs")]: {
+            width: "100%",
+            height: "10%"
         }
+        
     }
 };

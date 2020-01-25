@@ -4,7 +4,7 @@
 import chroma from "chroma-js";
 import sizes from "./sizes";
 
-export default {
+const styles = {
     ColorBox: {
         /* 5 boxes will go across the screen*/
         width: "20%", 
@@ -20,12 +20,12 @@ export default {
         },
         [sizes.down("lg")]: {
             width: "25%",
-            height: props => (props.showingFullPalette ? "20%" : "50%")
+            height: props => (props.showingFullPalette ? "20%" : "33.3333%")
         },
         [sizes.down("md")]: {
             width: "50%",
             // Since width is 50%, there will be 2 colorBoxes across the screen, and therefore, to fit all 20 colorboxes to the screen we need to set height of each colorBox to 10% 
-            height: props => (props.showingFullPalette ? "10%" : "50%")
+            height: props => (props.showingFullPalette ? "10%" : "20%")
         },
         [sizes.down("xs")]: {
             width: "100%",
@@ -133,7 +133,10 @@ export default {
             textAlign: "center",
             marginBottom: "0",
             padding: "1rem",
-            textTransform: "uppercase"
+            textTransform: "uppercase",
+            [sizes.down("xs")]: {
+                fontSize: "5rem"
+            }
         },
         "& p": {
             fontSize: "2rem",
@@ -148,3 +151,5 @@ export default {
         transitionDelay: "0.3s"
     }
 };
+
+export default styles;
