@@ -1,3 +1,4 @@
+import sizes from './sizes';
 export default {
     Navbar: {
         display: "flex",
@@ -17,6 +18,10 @@ export default {
         "& a": {
             textDecoration: "none",
             color: "black"
+        },
+        // when screen-size is xs or smaller
+        [sizes.down("xs")]: {
+            display: "none"
         }
     },
     slider: {
@@ -38,6 +43,9 @@ export default {
         },
         "& .rc-slider-track": {
             backgroundColor: "transparent"
+        },
+        [sizes.down("md")]: {
+            width: "150"
         }
     },
     selectContainer: {
