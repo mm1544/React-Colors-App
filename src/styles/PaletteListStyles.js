@@ -1,12 +1,20 @@
 import sizes from './sizes';
+import bg from "./bg.svg";
 
 export default {
     root: {
-        backgroundColor: "blue",
         height: "100vh", // !!! 100% would not cover all screen, because "root" is wraped in another component
         display: "flex",
         alignItems: "flex-start",
-        justifyContent: "center"
+        justifyContent: "center",
+        /*background by SVGBackgrounds.com */
+        backgroundColor: "#ffffff",
+        backgroundImage: `url(${bg})`,
+        // fixing palettes overfloving a root div
+        overflow: "scroll"
+    },
+    heading: {
+        fontSize: "2rem"
     },
     container: {
         width: "50%", //% of its parent
@@ -46,7 +54,7 @@ export default {
         [sizes.down("xs")]: {
             // one palette 0n each row
             gridTemplateColumns: "repeat(1, 100%)",
-            gridGap: "1rem",
+            gridGap: "1.4rem",
         }
 
     }
