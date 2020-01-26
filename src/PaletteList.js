@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import MiniPalette from './MiniPalette';
 import {withStyles} from '@material-ui/styles';
 import styles from './styles/PaletteListStyles';
+// For
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 class PaletteList extends Component {
 
@@ -21,19 +23,27 @@ class PaletteList extends Component {
                         <h1 className={classes.heading}>React Colors</h1>
                         <Link to='/palette/new'>Create Palette</Link>
                     </nav>
-                    <div className={classes.palettes}>
+                    {/* wrapping everything to TransitionGroup */}
+                    <TransitionGroup className={classes.palettes}>
                         {palettes.map(palette => (
-                        // passing all content of palette - {...palette}
-                        // using an arrow fn to pass-in id to goToPalette()
-                            <MiniPalette 
-                                {...palette}
-                                handleClick={() => this.goToPalette(palette.id)}
-                                handleDelete={deletePalette}
-                                key={palette.id}
-                                id={palette.id}
-                            />
+                            // wrapping each palette in CSSTransition
+                            <CSSTransition 
+                                key={palette.id} 
+                                classNames="fade"
+                                timeout={500}
+                            >
+                                {/* //# passing all content of palette - {...palette}
+                                //# using an arrow fn to pass-in id to goToPalette() */}
+                                <MiniPalette 
+                                    {...palette}
+                                    handleClick={() => this.goToPalette(palette.id)}
+                                    handleDelete={deletePalette}
+                                    key={palette.id}
+                                    id={palette.id}
+                                />
+                            </CSSTransition>
                         ))}
-                    </div>
+                    </TransitionGroup>
                 </div>
             </div>
         );

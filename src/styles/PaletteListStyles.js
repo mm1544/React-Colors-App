@@ -2,6 +2,15 @@ import sizes from './sizes';
 import bg from "./bg.svg";
 
 export default {
+    "@global": {
+        ".fade-exit": {
+            opacity: 1
+        },
+        ".fade-exit-active": {
+            opacity: 0,
+            transition: "opacity 0.5s ease-out"
+        }
+    },
     root: {
         height: "100vh", // !!! 100% would not cover all screen, because "root" is wraped in another component
         display: "flex",
