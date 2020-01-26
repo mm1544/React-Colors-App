@@ -1,3 +1,5 @@
+import sizes from './sizes';
+
 export default {
     root: {
         backgroundColor: "blue",
@@ -11,7 +13,14 @@ export default {
         display: "flex",
         alignItems: "flex-start",
         flexDirection: "column",
-        flexWrap: "wrap"
+        flexWrap: "wrap",
+        [sizes.down("xl")]: {
+            width: "80%"
+        },
+        [sizes.down("xs")]: {
+            width: "70%"
+        },
+        
     },
     nav: {
         display: "flex",
@@ -29,7 +38,16 @@ export default {
         width: "100%",
         display: "grid", //using css grid system
         gridTemplateColumns: "repeat(3, 30%)", // 3 items will go across, eachone is 30%
-        gridGap: "5%" // 30%*5%*30%*5%*30%
+        gridGap: "2.5rem",
+        [sizes.down("md")]: {
+            // 2 one palette 0n each row
+            gridTemplateColumns: "repeat(2, 50%)"
+        },
+        [sizes.down("xs")]: {
+            // one palette 0n each row
+            gridTemplateColumns: "repeat(1, 100%)",
+            gridGap: "1rem",
+        }
 
     }
 };
