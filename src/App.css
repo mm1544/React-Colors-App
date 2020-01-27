@@ -1,6 +1,0 @@
-/* page has to be set to be a fullscreen */
-.page {
-  height: 100vh;
-  position: fixed;
-  width: 100%;
-}

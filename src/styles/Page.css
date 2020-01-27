@@ -1,0 +1,24 @@
+/* page has to be set to be a fullscreen */
+.page {
+    height: 100vh;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    transition: opacity 0.5s ease-in-out;
+    /* transition: transform 0.5s ease-in-out; */
+}
+.page-enter {
+    opacity: 0;
+    /* at the enter page is 100% off the screen */
+    /* transform: translateX(100%); */
+}
+.page-enter-active {
+    opacity: 1;
+    /* when page enter is active */
+    /* transform: translateX(0); */
+}
+.page-exit-active {
+    opacity: 0;
+    /* when the page finishes exiting, we want it to move off to the left side */
+    /* transform: translateX(-100%); */
+}
