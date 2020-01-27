@@ -9,8 +9,6 @@ import {Picker} from 'emoji-mart';
 import {ValidatorForm, TextValidator} from "react-material-ui-form-validator";
 import 'emoji-mart/css/emoji-mart.css'
 
-
-
 class PaletteMetaForm  extends Component {
     constructor(props) {
         super(props);
