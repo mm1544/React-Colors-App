@@ -71,7 +71,7 @@ class PaletteList extends Component {
                                 //# using an arrow fn to pass-in id to goToPalette() */}
                                 <MiniPalette 
                                     {...palette}
-                                    handleClick={() => this.goToPalette(palette.id)}
+                                    handleClick={this.goToPalette}
                                     // handleDelete={deletePalette}
                                     openDialog={this.openDialog}
                                     key={palette.id}

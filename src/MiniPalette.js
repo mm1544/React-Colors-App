@@ -2,13 +2,14 @@
 // but a "functional component" (!)
 // because we will not need state, constructor, methods
 
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {withStyles} from '@material-ui/styles';
 import styles from './styles/MiniPaletteStyles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { render } from '@testing-library/react';
 
-class MiniPalette extends Component {
+// PureComponent is not rerendering every time when there are changes in parent state
+class MiniPalette extends PureComponent {
     constructor(props){
         super(props);
         this.deletePalette = this.deletePalette.bind(this);
@@ -21,7 +22,7 @@ class MiniPalette extends Component {
     }
     
     render(){
-        const {classes, paletteName, emoji, colors, handleClick} = this.props;
+        const {classes, paletteName, emoji, colors, handleClick, id} = this.props;
         const miniColorBoxes = colors.map(color => (
         <div 
             className={classes.miniColor} 
@@ -34,7 +35,7 @@ class MiniPalette extends Component {
             // there is created unique class-name inside "classes.main"
             <div 
                 className={classes.root} 
-                onClick={handleClick}
+                onClick={() => handleClick(id)}
             >
                 <DeleteIcon 
                     className={classes.deleteIcon} 
