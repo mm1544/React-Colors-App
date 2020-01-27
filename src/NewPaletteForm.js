@@ -164,6 +164,8 @@ class NewPaletteForm extends Component {
                 removeColor={this.removeColor}
                 axis='xy'
                 onSortEnd={this.onSortEnd}
+                //event will be interpreted as "drag" when you will move object at least 20px
+                distance={20} 
               />
             </main>
           </div>
