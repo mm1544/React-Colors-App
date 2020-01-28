@@ -88,7 +88,7 @@ class NewPaletteForm extends Component {
         // "flat()" will make 1-D array out of multi-D array
         const allColors = this.props.palettes.map(p => p.colors).flat();
         let rand;
-        const randomColor = allColors[rand];
+        let randomColor;
         let isDuplicateColor = true;
         while(isDuplicateColor) {
           rand = Math.floor(Math.random() * allColors.length);
