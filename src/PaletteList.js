@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import MiniPalette from './MiniPalette';
 import {withStyles} from '@material-ui/styles';
-import styles from './styles/PaletteListStyles';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -17,6 +16,7 @@ import Avatar from "@material-ui/core/Avatar";
 // importing colors from Material-ui
 import blue from "@material-ui/core/colors/blue";
 import red from "@material-ui/core/colors/red";
+import styles from './styles/PaletteListStyles';
 
 class PaletteList extends Component {
     constructor(props) {
@@ -24,32 +24,30 @@ class PaletteList extends Component {
         this.state = {
             openDeleteDialog: false,
             deletingId: ""
-        }
+        };
         this.openDialog = this.openDialog.bind(this);
         this.closeDialog = this.closeDialog.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.goToPalette = this.goToPalette.bind(this);
     }
     // id is an id of a palette for which the dialog is opened
     openDialog(id) {
-        this.setState({openDeleteDialog: true, deletingId: id});
+        this.setState({ openDeleteDialog: true, deletingId: id });
     }
     closeDialog() {
-        this.setState({openDeleteDialog: false, deletingId: ""});
+        this.setState({ openDeleteDialog: false, deletingId: "" });
     }
-
     goToPalette(id){
         // "this.props.history" comes from routeProps
         this.props.history.push(`/palette/${id}`);
     }
-
     handleDelete(){
         this.props.deletePalette(this.state.deletingId);
         this.closeDialog();
     }
-
     render() {
-        const {palettes, classes, deletePalette} = this.props;
-        const {openDeleteDialog, deletingId} = this.state;
+        const { palettes, classes } = this.props;
+        const { openDeleteDialog } = this.state;
         return (
             // PaletteList is regular class based component, therefore to access "root" --> this.props.classes.root
             <div className={classes.root}>
@@ -71,7 +69,7 @@ class PaletteList extends Component {
                                 //# using an arrow fn to pass-in id to goToPalette() */}
                                 <MiniPalette 
                                     {...palette}
-                                    handleClick={this.goToPalette}
+                                    goToPalette={this.goToPalette}
                                     // handleDelete={deletePalette}
                                     openDialog={this.openDialog}
                                     key={palette.id}
@@ -83,7 +81,8 @@ class PaletteList extends Component {
                 </div>
                 {/* each Dialog needs to have a prop that specifies when it should be open */}
                 <Dialog 
-                    open={openDeleteDialog} aria-labelledby="delete-dialog-title"
+                    open={openDeleteDialog} 
+                    aria-labelledby="delete-dialog-title"
                     onClose={this.closeDialog}
                 >
                     <DialogTitle id="delete-dialog-title">Delete this palette?</DialogTitle>

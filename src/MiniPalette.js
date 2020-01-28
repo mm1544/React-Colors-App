@@ -6,23 +6,24 @@ import React, {PureComponent} from 'react';
 import {withStyles} from '@material-ui/styles';
 import styles from './styles/MiniPaletteStyles';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { render } from '@testing-library/react';
 
 // PureComponent is not rerendering every time when there are changes in parent state
 class MiniPalette extends PureComponent {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.deletePalette = this.deletePalette.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     deletePalette(evt) {
         evt.stopPropagation();
         this.props.openDialog(this.props.id);
-        // this.props.handleDelete(this.props.id);
     }
-    
-    render(){
-        const {classes, paletteName, emoji, colors, handleClick, id} = this.props;
+    handleClick() {
+        this.props.goToPalette(this.props.id);
+      }
+    render() {
+        const { classes, paletteName, emoji, colors } = this.props;
         const miniColorBoxes = colors.map(color => (
         <div 
             className={classes.miniColor} 
@@ -30,12 +31,11 @@ class MiniPalette extends PureComponent {
             key={color.name}    
         />
         ));
-
         return (
             // there is created unique class-name inside "classes.main"
             <div 
                 className={classes.root} 
-                onClick={() => handleClick(id)}
+                onClick={this.handleClick}
             >
                 <DeleteIcon 
                     className={classes.deleteIcon} 
