@@ -20,6 +20,7 @@ class App extends Component {
     this.savePalette = this.savePalette.bind(this);
     this.findPalette = this.findPalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
+    this.renderedPaletteList = this.renderedPaletteList.bind(this);
   }
 
   findPalette(id) {
@@ -53,6 +54,18 @@ class App extends Component {
   syncLocalStorage() {
     // save palettes to local storage
     window.localStorage.setItem("palettes", JSON.stringify(this.state.palettes));
+  }
+
+  renderedPaletteList(routeP) {
+    return (
+      <Page>
+        <PaletteList 
+          palettes={this.state.palettes} 
+          {...routeP}
+          deletePalette={this.deletePalette}
+        />
+      </Page>
+    );
   }
 
   render() {
@@ -101,15 +114,7 @@ class App extends Component {
               <Route 
                 exact 
                 path='/' 
-                render={routeProps => (
-                  <Page>
-                    <PaletteList 
-                      palettes={this.state.palettes} 
-                      {...routeProps}
-                      deletePalette={this.deletePalette}
-                    />
-                  </Page>
-                )} 
+                render={routeProps => (this.renderedPaletteList(routeProps))} 
               />
               {/* // using routeProps !! 
               // routeProps.match.params.id --> takes id from url
@@ -117,15 +122,23 @@ class App extends Component {
               <Route 
                 exact 
                 path='/palette/:id' 
-                render={routeProps => (
+                render={routeProps => ((this.findPalette(routeProps.match.params.id)) ? (
                   <Page>
                     <Palette 
-                      palette={generatePalette(
+                      palette={
+                        generatePalette(
                         this.findPalette(routeProps.match.params.id)
                       )} 
                     />
                   </Page>
+                ): 
+                // if palette-id in url is typed in incorectly
+                (this.renderedPaletteList(routeProps))
                 )} 
+              />
+              {/* for the case when some other path is entered */}
+              <Route 
+                render={routeProps => (this.renderedPaletteList(routeProps))} 
               />
             </Switch>
           </CSSTransition>
